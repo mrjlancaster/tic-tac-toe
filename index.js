@@ -11,110 +11,110 @@ const PLAYER_O = "circle";
 let circleTurn;
 
 const WINNING_COMBOS = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 function handleClick(e) {
-	const cell = e.target;
-	const currentClass = circleTurn ? PLAYER_O : PLAYER_X;
-	placeMark(cell, currentClass);
+  const cell = e.target;
+  const currentClass = circleTurn ? PLAYER_O : PLAYER_X;
+  placeMark(cell, currentClass);
 
-	if (checkWin(currentClass)) {
-		endGame(false);
-	} else if (isDraw()) {
-		endGame(true);
-	} else {
-		swapTurns();
-		setBoardHoverClass();
-	}
+  if (checkWin(currentClass)) {
+    endGame(false);
+  } else if (isDraw()) {
+    endGame(true);
+  } else {
+    swapTurns();
+    setBoardHoverClass();
+  }
 }
 
 function initGame() {
-	startButton.addEventListener("click", (e) => {
-		winningView.style.display = "none";
+  startButton.addEventListener("click", (e) => {
+    winningView.style.display = "none";
 
-		circleTurn = false;
+    circleTurn = false;
 
-		cellElements.forEach((cell) => {
-			cell.classList.remove(PLAYER_X);
-			cell.classList.remove(PLAYER_O);
+    cellElements.forEach((cell) => {
+      cell.classList.remove(PLAYER_X);
+      cell.classList.remove(PLAYER_O);
 
-			cell.removeEventListener("click", handleClick);
-			cell.addEventListener("click", handleClick, { once: true });
-		});
+      cell.removeEventListener("click", handleClick);
+      cell.addEventListener("click", handleClick, { once: true });
+    });
 
-		setBoardHoverClass();
+    setBoardHoverClass();
 
-		menu.style.visibility = "hidden";
-	});
+    menu.style.visibility = "hidden";
+  });
 }
 
 function placeMark(cell, currentClass) {
-	cell.classList.add(currentClass);
+  cell.classList.add(currentClass);
 }
 
 function swapTurns() {
-	circleTurn = !circleTurn;
+  circleTurn = !circleTurn;
 }
 
 function isDraw() {
-	return [...cellElements].every((cell) => {
-		return (
-			cell.classList.contains(PLAYER_X) || cell.classList.contains(PLAYER_O)
-		);
-	});
+  return [...cellElements].every((cell) => {
+    return (
+      cell.classList.contains(PLAYER_X) || cell.classList.contains(PLAYER_O)
+    );
+  });
 }
 
 function setBoardHoverClass() {
-	board.classList.remove(PLAYER_X);
-	board.classList.remove(PLAYER_O);
+  board.classList.remove(PLAYER_X);
+  board.classList.remove(PLAYER_O);
 
-	if (circleTurn) {
-		board.classList.add(PLAYER_O);
-	} else {
-		board.classList.add(PLAYER_X);
-	}
+  if (circleTurn) {
+    board.classList.add(PLAYER_O);
+  } else {
+    board.classList.add(PLAYER_X);
+  }
 }
 
 function restartGame() {
-	winningView.style.display = "none";
+  winningView.style.display = "none";
 
-	circleTurn = false;
+  circleTurn = false;
 
-	cellElements.forEach((cell) => {
-		cell.classList.remove(PLAYER_X);
-		cell.classList.remove(PLAYER_O);
+  cellElements.forEach((cell) => {
+    cell.classList.remove(PLAYER_X);
+    cell.classList.remove(PLAYER_O);
 
-		cell.removeEventListener("click", handleClick);
-		cell.addEventListener("click", handleClick, { once: true });
-	});
+    cell.removeEventListener("click", handleClick);
+    cell.addEventListener("click", handleClick, { once: true });
+  });
 
-	setBoardHoverClass();
+  setBoardHoverClass();
 }
 
 function checkWin(currentClass) {
-	return WINNING_COMBOS.some((combination) => {
-		return combination.every((index) => {
-			return cellElements[index].classList.contains(currentClass);
-		});
-	});
+  return WINNING_COMBOS.some((combination) => {
+    return combination.every((index) => {
+      return cellElements[index].classList.contains(currentClass);
+    });
+  });
 }
 
 function endGame(draw) {
-	if (draw) {
-		winnerMessage.innerText = "Draw!";
-	} else {
-		winnerMessage.innerText = circleTurn ? "O WINS!" : "X WINS!";
-	}
+  if (draw) {
+    winnerMessage.innerText = "Draw!";
+  } else {
+    winnerMessage.innerText = circleTurn ? "O WINS!" : "X WINS!";
+  }
 
-	winningView.style.display = "flex";
+  winningView.style.display = "flex";
 }
 
 restartButton.addEventListener("click", restartGame);

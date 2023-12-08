@@ -1,41 +1,55 @@
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .menu {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	background-color: #fff;
-	height: 30vh;
-	width: 50%;
-	border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  height: 35vh;
+  width: 45%;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .title-wrapper {
-	text-align: center;
+  text-align: center;
 }
 
 .title {
-	font-family: "Roboto", sans-serif;
-	font-family: "Shadows Into Light", cursive;
-	font-size: 50px;
+  font-family: "Roboto", sans-serif;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 50px;
 }
 
 .subheading {
-	font-size: 30px;
-	font-weight: 400;
-	font-family: roboto, sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-family: roboto, sans-serif;
 }
 
 .button-wrapper {
-	text-align: center;
-	width: 100%;
+  text-align: center;
+  width: 100%;
 }
 
 .action-btn {
-	max-width: 100px;
-	border: none;
-	padding: 10px 12px;
-	border-radius: 4px;
-	cursor: pointer;
-	background-color: #202a44;
-	color: #fff;
+  border: none;
+  cursor: pointer;
+  background-color: #202a44;
+  color: #fff;
+  font-family: roboto, sans-serif;
+  border-radius: 5px;
+  font-size: 1.15em;
+  padding: 14px 20px;
 }
